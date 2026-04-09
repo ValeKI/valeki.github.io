@@ -3,10 +3,14 @@ import { Sun, Moon, Download, ExternalLink, Code2, GraduationCap, Briefcase, Awa
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import BubbleBackground from './components/BubbleBackground';
 import { RetroCard } from './components/ui/RetroCard';
-import { experiences, skillsData, certificationsData, awardsData } from './data/portfolioData';
+
+// Import data dictionaries
+import { experiences_it, skills_it, certifications_it, awards_it, education_it } from './data/portfolio_it';
+import { experiences_en, skills_en, certifications_en, awards_en, education_en } from './data/portfolio_en';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
+  const [lang, setLang] = useState('en');
   const [repos, setRepos] = useState([]);
 
   useEffect(() => {
@@ -26,6 +30,43 @@ function App() {
     }
   }, [darkMode]);
 
+  // UI Strings mapping
+  const ui = {
+    en: {
+      roleDesc: "Fullstack Developer specialized in microservices and modern architectures. Passionate about clean code and scalable solutions.",
+      download: "Download CV",
+      skillsTitle: "Technologies & Skills",
+      expTitle: "Recent Experience",
+      eduTitle: "Education",
+      gitTitle: "GitHub Projects",
+      certTitle: "Certifications & Courses",
+      awardsTitle: "Awards & Recognitions",
+      footer: "Built with React & Bubble Magic.",
+      noDesc: "No description available.",
+      cvFile: "cv_en.pdf"
+    },
+    it: {
+      roleDesc: "Fullstack Developer specializzata in microservizi e architetture moderne. Appassionata di codice pulito e soluzioni scalabili.",
+      download: "Scarica CV",
+      skillsTitle: "Tecnologie & Skills",
+      expTitle: "Esperienza Recente",
+      eduTitle: "Formazione",
+      gitTitle: "Progetti GitHub",
+      certTitle: "Certificazioni e Corsi",
+      awardsTitle: "Riconoscimenti e Premi",
+      footer: "Costruito con React & Bubble Magic.",
+      noDesc: "Nessuna descrizione disponibile.",
+      cvFile: "cv_it.pdf"
+    }
+  };
+
+  const t = ui[lang];
+  const experiences = lang === 'en' ? experiences_en : experiences_it;
+  const skillsData = lang === 'en' ? skills_en : skills_it;
+  const certificationsData = lang === 'en' ? certifications_en : certifications_it;
+  const awardsData = lang === 'en' ? awards_en : awards_it;
+  const eduData = lang === 'en' ? education_en : education_it;
+
   return (
     <div className="min-h-screen relative overflow-x-hidden">
       <BubbleBackground />
@@ -35,12 +76,21 @@ function App() {
         <div className="text-2xl font-extrabold tracking-tighter bg-gradient-to-r from-[#58D854] via-[#3CBCFC] to-[#F85898] bg-clip-text text-transparent">
           DMV.
         </div>
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          className="p-2 rounded-full bg-black/10 dark:bg-white/20 hover:bg-black/20 dark:hover:bg-white/30 transition-colors"
-        >
-          {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-        </button>
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => setLang(lang === 'en' ? 'it' : 'en')}
+            className="p-2 rounded-full bg-black/10 dark:bg-white/20 hover:bg-black/20 dark:hover:bg-white/30 transition-colors w-10 h-10 flex items-center justify-center text-xl"
+            title={lang === 'en' ? "Passa all'italiano" : "Switch to English"}
+          >
+            {lang === 'en' ? "🇮🇹" : "🇬🇧"}
+          </button>
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className="p-2 rounded-full bg-black/10 dark:bg-white/20 hover:bg-black/20 dark:hover:bg-white/30 transition-colors w-10 h-10 flex items-center justify-center"
+          >
+            {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+        </div>
       </nav>
 
       <main className="max-w-6xl mx-auto px-6 pt-32 pb-20">
@@ -49,20 +99,18 @@ function App() {
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="flex-1">
               <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
-                portfolio <br />
                 <span className="text-[#3CBCFC]">Valentina</span> De Miglio
               </h1>
               <p className="text-xl md:text-2xl opacity-80 mb-8 max-w-2xl">
-                Fullstack Developer specializzata in microservizi e architetture moderne.
-                Appassionata di codice pulito e soluzioni scalabili.
+                {t.roleDesc}
               </p>
               <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-                <a href="/public/cv.pdf" download className="flex items-center gap-2 bg-[#F85898] hover:bg-[#F85898]/80 text-white px-6 py-3 rounded-full font-bold transition-all transform hover:scale-105">
-                  <Download size={20} /> Scarica CV
+                <a href={`/${t.cvFile}`} download className="flex items-center gap-2 bg-[#F85898] hover:bg-[#F85898]/80 text-white px-6 py-3 rounded-full font-bold transition-all transform hover:scale-105">
+                  <Download size={20} /> {t.download}
                 </a>
                 <div className="flex gap-4 items-center">
-                  <a href="#" className="p-3 bg-black/5 dark:bg-white/10 rounded-full hover:bg-black/10 dark:hover:bg-white/20 transition-all"><FaGithub size={24} /></a>
-                  <a href="#" className="p-3 bg-black/5 dark:bg-white/10 rounded-full hover:bg-black/10 dark:hover:bg-white/20 transition-all"><FaLinkedin size={24} /></a>
+                  <a href="https://github.com/valeki" className="p-3 bg-black/5 dark:bg-white/10 rounded-full hover:bg-black/10 dark:hover:bg-white/20 transition-all"><FaGithub size={24} /></a>
+                  <a href="https://www.linkedin.com/in/valentina-de-miglio-078373121/" className="p-3 bg-black/5 dark:bg-white/10 rounded-full hover:bg-black/10 dark:hover:bg-white/20 transition-all"><FaLinkedin size={24} /></a>
                 </div>
               </div>
             </div>
@@ -81,7 +129,7 @@ function App() {
         <section className="mb-32">
           <div className="flex items-center gap-4 mb-12">
             <Code2 size={32} className="text-[#58D854]" />
-            <h2 className="text-3xl font-bold">Tecnologie & Skills</h2>
+            <h2 className="text-3xl font-bold">{t.skillsTitle}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {skillsData.map((cat, i) => (
@@ -99,7 +147,7 @@ function App() {
         <section className="mb-32">
           <div className="flex items-center gap-4 mb-12">
             <Briefcase size={32} className="text-[#3CBCFC]" />
-            <h2 className="text-3xl font-bold">Esperienza Recente</h2>
+            <h2 className="text-3xl font-bold">{t.expTitle}</h2>
           </div>
           <div className="space-y-12">
             {experiences.map((exp, idx) => (
@@ -137,22 +185,22 @@ function App() {
         <section className="mb-32">
           <div className="flex items-center gap-4 mb-12">
             <GraduationCap size={32} className="text-[#3CBCFC]" />
-            <h2 className="text-3xl font-bold">Formazione</h2>
+            <h2 className="text-3xl font-bold">{t.eduTitle}</h2>
           </div>
           <div className="space-y-8">
             <div className="relative pl-8 border-l-2 border-[#3CBCFC]/30">
               <div className="absolute top-0 -left-2 w-4 h-4 rounded-full bg-[#3CBCFC]" />
-              <div className="mb-2 text-sm font-bold text-[#3CBCFC]">2017 – 2021</div>
-              <h3 className="text-2xl font-bold">Laurea Triennale in Informatica</h3>
-              <p className="opacity-80 mt-1 max-w-3xl">Università degli Studi</p>
-              
+              <div className="mb-2 text-sm font-bold text-[#3CBCFC]">{eduData.degree.period}</div>
+              <h3 className="text-2xl font-bold">{eduData.degree.title}</h3>
+              <p className="opacity-80 mt-1 max-w-3xl">{eduData.degree.issuer}</p>
+
               <div className="mt-4">
                 <RetroCard color="blue" className="!p-5">
                   <p className="text-sm opacity-80 mb-3 leading-relaxed">
-                    Durante il percorso universitario ho sviluppato una solida base nelle scienze computazionali e nello sviluppo software, con particolare attenzione alla programmazione (C++, Java, Python), comprese le tecniche di programmazione parallela, alle reti di calcolatori, all’intelligenza artificiale e alla ricerca operativa.
+                    {eduData.degree.desc}
                   </p>
                   <p className="text-sm opacity-80 mb-4 leading-relaxed">
-                    <strong>Tesi: AspIde</strong> – Piattaforma per l’analisi sintattica e la gestione di programmi ASP (Answer Set Programming). Il sistema integra un backend in Python e un frontend in React/Ionic con Redux, consentendo la scrittura, l’esecuzione e l’analisi di programmi logici, con funzionalità di regressione, misurazione dei tempi e gestione dei file.
+                    <strong>{eduData.degree.thesisTitle}</strong> – {eduData.degree.thesis}
                   </p>
                   <div className="flex flex-wrap gap-2 pt-2">
                     {["C++", "Java", "Python", "JavaScript", "React", "Ionic", "Node.js", "Flask", "Perl", "SQL", "Git", "Linux/Bash"].map((t, i) => (
@@ -165,18 +213,18 @@ function App() {
 
             <div className="relative pl-8 border-l-2 border-[#3CBCFC]/30">
               <div className="absolute top-0 -left-2 w-4 h-4 rounded-full bg-[#3CBCFC]" />
-              <div className="mb-2 text-sm font-bold text-[#3CBCFC]">2020</div>
-              <h3 className="text-2xl font-bold">Erasmus+</h3>
-              <p className="opacity-80 mt-1 max-w-3xl">Universidad de Málaga</p>
+              <div className="mb-2 text-sm font-bold text-[#3CBCFC]">{eduData.erasmus.period}</div>
+              <h3 className="text-2xl font-bold">{eduData.erasmus.title}</h3>
+              <p className="opacity-80 mt-1 max-w-3xl">{eduData.erasmus.issuer}</p>
               <p className="text-sm opacity-70 mt-3 max-w-3xl">
-                Ambiti di studio: Reti e Telecomunicazioni, Inferenza Statistica, Sistemi Paralleli (Java multithreading), Sistemi Dinamici per AI.
+                {eduData.erasmus.desc}
               </p>
             </div>
 
             <div className="relative pl-8 border-l-2 border-[#3CBCFC]/30">
               <div className="absolute top-0 -left-2 w-4 h-4 rounded-full bg-[#3CBCFC]" />
-              <div className="mb-2 text-sm font-bold text-[#3CBCFC]">Precedente</div>
-              <h3 className="text-2xl font-bold">Diploma in Sistemi Informativi Aziendali</h3>
+              <div className="mb-2 text-sm font-bold text-[#3CBCFC]">{eduData.highschool.period}</div>
+              <h3 className="text-2xl font-bold">{eduData.highschool.title}</h3>
             </div>
           </div>
         </section>
@@ -185,7 +233,7 @@ function App() {
         <section className="mb-32">
           <div className="flex items-center gap-4 mb-12">
             <FaGithub size={32} className="text-[#F85898]" />
-            <h2 className="text-3xl font-bold">Progetti GitHub</h2>
+            <h2 className="text-3xl font-bold">{t.gitTitle}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {repos.map((repo) => (
@@ -202,7 +250,7 @@ function App() {
                     <ExternalLink size={16} className="opacity-0 group-hover:opacity-100 transition-opacity text-[#F85898]" />
                   </div>
                   <p className="text-sm opacity-60 mb-6 line-clamp-2 h-10">
-                    {repo.description || "Nessuna descrizione disponibile."}
+                    {repo.description || t.noDesc}
                   </p>
                   <div className="flex items-center gap-4 text-xs font-mono mt-auto">
                     <span className="flex items-center gap-1">
@@ -220,11 +268,11 @@ function App() {
         <section className="mb-32">
           <div className="flex items-center gap-4 mb-12">
             <Award size={32} className="text-[#F8B800]" />
-            <h2 className="text-3xl font-bold">Certificazioni e Corsi</h2>
+            <h2 className="text-3xl font-bold">{t.certTitle}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {certificationsData.map((cert, i) => (
-              <RetroCard key={i} color="yellow" className="group">
+              <RetroCard key={i} color="yellow" className="group p-8">
                 <div>
                   <h3 className="text-xl font-bold mb-2 group-hover:text-[#F8B800] transition-colors">{cert.title}</h3>
                   <p className="text-sm opacity-70">{cert.details}</p>
@@ -243,11 +291,11 @@ function App() {
         <section className="mb-32">
           <div className="flex items-center gap-4 mb-12">
             <Trophy size={32} className="text-[#F85898]" />
-            <h2 className="text-3xl font-bold">Riconoscimenti e Premi</h2>
+            <h2 className="text-3xl font-bold">{t.awardsTitle}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {awardsData.map((award, i) => (
-              <RetroCard key={i} color="pink">
+              <RetroCard key={i} color="pink" className="p-8">
                 <div>
                   <h3 className="text-xl font-bold mb-2">{award.title}</h3>
                   <p className="text-sm font-semibold text-[#F85898] mb-1">{award.issuer} • {award.date}</p>
@@ -263,7 +311,7 @@ function App() {
 
       {/* Footer */}
       <footer className="py-8 text-center opacity-50 text-sm border-t border-gray-200 dark:border-white/10">
-        <p>© 2026 Valentina De Miglio. Built with React & Bubble Magic.</p>
+        <p>© 2026 Valentina De Miglio. {t.footer}</p>
       </footer>
     </div>
   );

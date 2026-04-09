@@ -1,4 +1,4 @@
-export const experiences = [
+export const experiences_it = [
   {
     company: "Wakala",
     role: "Fullstack Developer",
@@ -60,14 +60,14 @@ export const experiences = [
   }
 ];
 
-export const skillsData = [
+export const skills_it = [
   { title: 'Backend', skills: ['Java', 'Spring Boot', 'Node.js', 'Python', 'PHP'], color: 'green' },
   { title: 'Frontend', skills: ['React', 'Angular', 'TypeScript', 'Tailwind', 'SCSS'], color: 'blue' },
   { title: 'Database', skills: ['PostgreSQL', 'Oracle', 'MongoDB', 'MySQL'], color: 'yellow' },
   { title: 'DevOps & Tools', skills: ['Docker', 'Kubernetes', 'AWS', 'Jenkins'], color: 'pink' }
 ];
 
-export const certificationsData = [
+export const certifications_it = [
   {
     title: "Certified Scrum Fundamentals",
     details: "ID: 861800",
@@ -85,7 +85,7 @@ export const certificationsData = [
   }
 ];
 
-export const awardsData = [
+export const awards_it = [
   {
     title: "Migliori Studenti del II Anno 2018/2019",
     issuer: "Università della Calabria",
@@ -101,3 +101,25 @@ export const awardsData = [
     desc: "Ho partecipato a questo progetto per la ricerca di un'idea innovativa con la mia classe delle scuole superiori. La nostra proposta è stata un orecchino che, se toccato, inviava un segnale d'allarme a dei numeri di telefono preselezionati."
   }
 ];
+
+export const education_it = {
+  degree: {
+    period: "2017 – 2021",
+    title: "Laurea Triennale in Informatica",
+    issuer: "Università degli Studi",
+    desc: "Durante il percorso universitario ho sviluppato una solida base nelle scienze computazionali e nello sviluppo software, con particolare attenzione alla programmazione (C++, Java, Python), comprese le tecniche di programmazione parallela, alle reti di calcolatori, all’intelligenza artificiale e alla ricerca operativa.",
+    thesis: "Piattaforma per l’analisi sintattica e la gestione di programmi ASP (Answer Set Programming). Il sistema integra un backend in Python e un frontend in React/Ionic con Redux, consentendo la scrittura, l’esecuzione e l’analisi di programmi logici, con funzionalità di regressione, misurazione dei tempi e gestione dei file.",
+    thesisTitle: "Tesi: AspIde"
+  },
+  erasmus: {
+    period: "2020",
+    title: "Erasmus+",
+    issuer: "Universidad de Málaga",
+    desc: "Ambiti di studio: Reti e Telecomunicazioni, Inferenza Statistica, Sistemi Paralleli (Java multithreading), Sistemi Dinamici per AI."
+  },
+  highschool: {
+    period: "Precedente",
+    title: "Diploma in Sistemi Informativi Aziendali",
+    issuer: ""
+  }
+};
