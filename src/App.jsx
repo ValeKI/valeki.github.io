@@ -99,7 +99,7 @@ function App() {
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="flex-1">
               <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
-                <span className="text-[#3CBCFC]">Valentina</span> De Miglio
+                <span className="text-[#3CBCFC]">Valentina</span> De&nbsp;Miglio
               </h1>
               <p className="text-xl md:text-2xl opacity-80 mb-8 max-w-2xl">
                 {t.roleDesc}
