@@ -33,7 +33,6 @@ const BubbleBackground = () => {
             height: bubble.size,
             left: `${bubble.x}%`,
             top: `${bubble.y}%`,
-            backgroundColor: bubble.color,
           }}
           animate={{
             y: [0, -100, 0, 100, 0],
@@ -46,7 +45,19 @@ const BubbleBackground = () => {
             delay: bubble.delay,
             ease: "linear"
           }}
-        />
+        >
+          <svg viewBox="0 0 10 10" width="100%" height="100%" shapeRendering="crispEdges">
+            <path 
+              fill={bubble.color} 
+              fillRule="evenodd" 
+              d="
+                M3 0 h4 v1 h2 v2 h1 v4 h-1 v2 h-2 v1 h-4 v-1 h-2 v-2 h-1 v-4 h1 v-2 h2 v-1 z
+                M3 2 h4 v1 h1 v4 h-1 v1 h-4 v-1 h-1 v-4 h1 v-1 z
+              " 
+            />
+            <rect x="2" y="2" width="2" height="2" fill="white" opacity="0.85" />
+          </svg>
+        </motion.div>
       ))}
     </div>
   );

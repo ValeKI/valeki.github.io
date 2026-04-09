@@ -109,7 +109,6 @@ function App() {
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="flex-1">
               <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
-                portfolio <br />
                 <span className="text-[#3CBCFC]">Valentina</span> De Miglio
               </h1>
               <p className="text-xl md:text-2xl opacity-80 mb-8 max-w-2xl">
@@ -324,23 +323,23 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
-                title: "Best Students II Year 2018/2019",
-                issuer: "University of Calabria",
+                title: "Migliori Studenti del II Anno 2018/2019",
+                issuer: "Università della Calabria",
                 date: "Dic 2019",
-                assoc: "Associazione con University of Calabria",
-                desc: "Students who attend the computer science course that meet the requirements (average and exams) receive this award."
+                assoc: "Associazione con Università della Calabria",
+                desc: "Premio assegnato agli studenti del corso di Informatica che soddisfano specifici requisiti di merito accademico (media voti ed esami superati)."
               },
               {
-                title: "Earring for Life – First Place",
+                title: "Earring for Life – Primo Posto",
                 issuer: "Innovazione EXPO Milano 2015",
                 date: "Gen 2015",
                 assoc: "Associazione con ITC Pezzullo Cosenza",
-                desc: "With my high school class, I joined this project. Its purpose was to find an innovative idea. Our one was an earring which, if touched, sent an alarm signal to preselected telephone numbers."
+                desc: "Ho partecipato a questo progetto per la ricerca di un'idea innovativa con la mia classe delle scuole superiori. La nostra proposta è stata un orecchino che, se toccato, inviava un segnale d'allarme a dei numeri di telefono preselezionati."
               }
             ].map((award, i) => (
-              <div key={i} className="p-8 rounded-2xl border border-[#F85898]/30 bg-white/5 hover:border-[#F85898]/80 transition-all hover:bg-white/10 flex flex-col h-full shadow-[0_0_15px_rgba(248,88,152,0.05)] hover:shadow-[0_0_20px_rgba(248,88,152,0.2)]">
+              <div key={i} className="p-8 rounded-2xl border border-[#F85898]/30 bg-black/5 dark:bg-white/5 hover:border-[#F85898]/80 transition-all hover:bg-black/10 dark:hover:bg-white/10 flex flex-col h-full shadow-[0_0_15px_rgba(248,88,152,0.05)] hover:shadow-[0_0_20px_rgba(248,88,152,0.2)]">
                 <div>
-                  <h3 className="text-xl font-bold mb-2 text-white">{award.title}</h3>
+                  <h3 className="text-xl font-bold mb-2">{award.title}</h3>
                   <p className="text-sm font-semibold text-[#F85898] mb-1">{award.issuer} • {award.date}</p>
                   <p className="text-xs opacity-60 mb-4">{award.assoc}</p>
                   <p className="text-sm opacity-80 leading-relaxed italic border-l-2 border-[#F85898]/50 pl-3">"{award.desc}"</p>
@@ -353,8 +352,8 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="py-10 text-center border-t border-white/10 opacity-50 text-sm">
-        © 2026 Valentina De Miglio. Built with React & Bubble Magic.
+      <footer className="py-8 text-center opacity-50 text-sm">
+        <p>© 2026 Valentina De Miglio. Built with React & Bubble Magic.</p>
       </footer>
     </div>
   );
