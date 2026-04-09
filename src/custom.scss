@@ -1,0 +1,42 @@
+/* Custom Styles for Portfolio */
+
+$primary-bubble: #58D854;
+$secondary-bubble: #3CBCFC;
+$accent-bubble: #F85898;
+$yellow-bubble: #F8B800;
+
+:root {
+  --primary-bubble: #{$primary-bubble};
+  --secondary-bubble: #{$secondary-bubble};
+  --accent-bubble: #{$accent-bubble};
+  --yellow-bubble: #{$yellow-bubble};
+}
+
+/* Custom styles for Bubble Bobble aesthetic */
+.bubble {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(1px);
+  opacity: 0.7;
+  cursor: pointer;
+  box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.1),
+    inset 5px 5px 10px rgba(255, 255, 255, 0.4);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+
+  &:hover {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+// Glassmorphism effect utility
+.glass {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  .dark & {
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
