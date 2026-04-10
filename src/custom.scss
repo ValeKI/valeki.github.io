@@ -19,8 +19,8 @@ $yellow-bubble: #F8B800;
   opacity: 0.85;
 }
 
-.bubble:hover {
-  transform: scale(1.15);
+.bubble:hover,
+.bubble.force-hover {
   opacity: 1;
 }
 
