@@ -93,7 +93,7 @@ function App() {
         </div>
       </nav>
 
-      <main className="max-w-6xl mx-auto px-6 pt-32 pb-20">
+      <main className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-20">
         {/* Hero Section */}
         <section className="mb-32 text-center md:text-left">
           <div className="flex flex-col md:flex-row items-center gap-12">
