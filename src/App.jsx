@@ -98,10 +98,10 @@ function App() {
         <section className="mb-32 text-center md:text-left">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="flex-1">
-              <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
+              <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight retro-text-shadow">
                 <span className="text-[#3CBCFC]">Valentina</span> De&nbsp;Miglio
               </h1>
-              <p className="text-xl md:text-2xl opacity-80 mb-8 max-w-2xl">
+              <p className="text-xl md:text-2xl mb-8 max-w-2xl retro-text-shadow">
                 {t.roleDesc}
               </p>
               <div className="flex flex-wrap gap-4 justify-center md:justify-start">
@@ -129,7 +129,7 @@ function App() {
         <section className="mb-32">
           <div className="flex items-center gap-4 mb-12">
             <Code2 size={32} className="text-[#58D854]" />
-            <h2 className="text-3xl font-bold">{t.skillsTitle}</h2>
+            <h2 className="text-3xl font-bold retro-text-shadow">{t.skillsTitle}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {skillsData.map((cat, i) => (
@@ -147,24 +147,24 @@ function App() {
         <section className="mb-32">
           <div className="flex items-center gap-4 mb-12">
             <Briefcase size={32} className="text-[#3CBCFC]" />
-            <h2 className="text-3xl font-bold">{t.expTitle}</h2>
+            <h2 className="text-3xl font-bold retro-text-shadow">{t.expTitle}</h2>
           </div>
           <div className="space-y-12">
             {experiences.map((exp, idx) => (
               <div key={idx} className="relative pl-8 border-l-2 border-[#3CBCFC]/30">
                 <div className="absolute top-0 -left-2 w-4 h-4 rounded-full bg-[#3CBCFC]" />
-                <div className="mb-2 text-sm font-bold text-[#3CBCFC]">{exp.period}</div>
-                <h3 className="text-2xl font-bold">{exp.company} – {exp.role}</h3>
-                <p className="opacity-80 mt-2 max-w-3xl leading-relaxed">
+                <div className="mb-2 text-sm font-bold text-[#3CBCFC] retro-text-shadow">{exp.period}</div>
+                <h3 className="text-2xl font-bold retro-text-shadow">{exp.company} – {exp.role}</h3>
+                <p className="mt-2 max-w-3xl leading-relaxed retro-text-shadow">
                   {exp.description}
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                   {exp.projects.map((proj, pIdx) => (
                     <RetroCard key={pIdx} color="blue" className="!p-5">
                       <h4 className="font-bold text-lg mb-2">{proj.name}</h4>
-                      <p className="text-sm opacity-70 mb-3">{proj.description}</p>
+                      <p className="text-sm mb-3 retro-text-shadow">{proj.description}</p>
                       {proj.details.length > 0 && (
-                        <ul className="text-sm opacity-70 list-disc list-inside mb-4 space-y-1">
+                        <ul className="text-sm list-disc list-inside mb-4 space-y-1 retro-text-shadow">
                           {proj.details.map((d, i) => <li key={i}>{d}</li>)}
                         </ul>
                       )}
@@ -185,21 +185,21 @@ function App() {
         <section className="mb-32">
           <div className="flex items-center gap-4 mb-12">
             <GraduationCap size={32} className="text-[#3CBCFC]" />
-            <h2 className="text-3xl font-bold">{t.eduTitle}</h2>
+            <h2 className="text-3xl font-bold retro-text-shadow">{t.eduTitle}</h2>
           </div>
           <div className="space-y-8">
             <div className="relative pl-8 border-l-2 border-[#3CBCFC]/30">
               <div className="absolute top-0 -left-2 w-4 h-4 rounded-full bg-[#3CBCFC]" />
-              <div className="mb-2 text-sm font-bold text-[#3CBCFC]">{eduData.degree.period}</div>
-              <h3 className="text-2xl font-bold">{eduData.degree.title}</h3>
-              <p className="opacity-80 mt-1 max-w-3xl">{eduData.degree.issuer}</p>
+              <div className="mb-2 text-sm font-bold text-[#3CBCFC] retro-text-shadow">{eduData.degree.period}</div>
+              <h3 className="text-2xl font-bold retro-text-shadow">{eduData.degree.title}</h3>
+              <p className="mt-1 max-w-3xl retro-text-shadow">{eduData.degree.issuer}</p>
 
               <div className="mt-4">
                 <RetroCard color="blue" className="!p-5">
-                  <p className="text-sm opacity-80 mb-3 leading-relaxed">
+                  <p className="text-sm mb-3 leading-relaxed retro-text-shadow">
                     {eduData.degree.desc}
                   </p>
-                  <p className="text-sm opacity-80 mb-4 leading-relaxed">
+                  <p className="text-sm mb-4 leading-relaxed retro-text-shadow">
                     <strong>{eduData.degree.thesisTitle}</strong> – {eduData.degree.thesis}
                   </p>
                   <div className="flex flex-wrap gap-2 pt-2">
@@ -213,18 +213,18 @@ function App() {
 
             <div className="relative pl-8 border-l-2 border-[#3CBCFC]/30">
               <div className="absolute top-0 -left-2 w-4 h-4 rounded-full bg-[#3CBCFC]" />
-              <div className="mb-2 text-sm font-bold text-[#3CBCFC]">{eduData.erasmus.period}</div>
-              <h3 className="text-2xl font-bold">{eduData.erasmus.title}</h3>
-              <p className="opacity-80 mt-1 max-w-3xl">{eduData.erasmus.issuer}</p>
-              <p className="text-sm opacity-70 mt-3 max-w-3xl">
+              <div className="mb-2 text-sm font-bold text-[#3CBCFC] retro-text-shadow">{eduData.erasmus.period}</div>
+              <h3 className="text-2xl font-bold retro-text-shadow">{eduData.erasmus.title}</h3>
+              <p className="mt-1 max-w-3xl retro-text-shadow">{eduData.erasmus.issuer}</p>
+              <p className="text-sm mt-3 max-w-3xl retro-text-shadow">
                 {eduData.erasmus.desc}
               </p>
             </div>
 
             <div className="relative pl-8 border-l-2 border-[#3CBCFC]/30">
               <div className="absolute top-0 -left-2 w-4 h-4 rounded-full bg-[#3CBCFC]" />
-              <div className="mb-2 text-sm font-bold text-[#3CBCFC]">{eduData.highschool.period}</div>
-              <h3 className="text-2xl font-bold">{eduData.highschool.title}</h3>
+              <div className="mb-2 text-sm font-bold text-[#3CBCFC] retro-text-shadow">{eduData.highschool.period}</div>
+              <h3 className="text-2xl font-bold retro-text-shadow">{eduData.highschool.title}</h3>
             </div>
           </div>
         </section>
@@ -233,7 +233,7 @@ function App() {
         <section className="mb-32">
           <div className="flex items-center gap-4 mb-12">
             <FaGithub size={32} className="text-[#F85898]" />
-            <h2 className="text-3xl font-bold">{t.gitTitle}</h2>
+            <h2 className="text-3xl font-bold retro-text-shadow">{t.gitTitle}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {repos.map((repo) => (
@@ -249,7 +249,7 @@ function App() {
                     <h3 className="font-bold text-lg group-hover:text-[#F85898] transition-colors">{repo.name}</h3>
                     <ExternalLink size={16} className="opacity-0 group-hover:opacity-100 transition-opacity text-[#F85898]" />
                   </div>
-                  <p className="text-sm opacity-60 mb-6 line-clamp-2 h-10">
+                  <p className="text-sm mb-6 line-clamp-2 h-10 retro-text-shadow">
                     {repo.description || t.noDesc}
                   </p>
                   <div className="flex items-center gap-4 text-xs font-mono mt-auto">
@@ -268,14 +268,14 @@ function App() {
         <section className="mb-32">
           <div className="flex items-center gap-4 mb-12">
             <Award size={32} className="text-[#F8B800]" />
-            <h2 className="text-3xl font-bold">{t.certTitle}</h2>
+            <h2 className="text-3xl font-bold retro-text-shadow">{t.certTitle}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {certificationsData.map((cert, i) => (
               <RetroCard key={i} color="yellow" className="group p-8">
                 <div>
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-[#F8B800] transition-colors">{cert.title}</h3>
-                  <p className="text-sm opacity-70">{cert.details}</p>
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-[#F8B800] transition-colors retro-text-shadow">{cert.title}</h3>
+                  <p className="text-sm retro-text-shadow">{cert.details}</p>
                 </div>
                 <div className="mt-6 flex justify-end">
                   <span className="px-3 py-1 bg-[#F8B800]/20 text-[#F8B800] text-sm font-bold rounded-full">
@@ -291,16 +291,16 @@ function App() {
         <section className="mb-32">
           <div className="flex items-center gap-4 mb-12">
             <Trophy size={32} className="text-[#F85898]" />
-            <h2 className="text-3xl font-bold">{t.awardsTitle}</h2>
+            <h2 className="text-3xl font-bold retro-text-shadow">{t.awardsTitle}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {awardsData.map((award, i) => (
               <RetroCard key={i} color="pink" className="p-8">
                 <div>
-                  <h3 className="text-xl font-bold mb-2">{award.title}</h3>
-                  <p className="text-sm font-semibold text-[#F85898] mb-1">{award.issuer} • {award.date}</p>
-                  <p className="text-xs opacity-60 mb-4">{award.assoc}</p>
-                  <p className="text-sm opacity-80 leading-relaxed italic border-l-2 border-[#F85898]/50 pl-3">"{award.desc}"</p>
+                  <h3 className="text-xl font-bold mb-2 retro-text-shadow">{award.title}</h3>
+                  <p className="text-sm font-semibold text-[#F85898] mb-1 retro-text-shadow">{award.issuer} • {award.date}</p>
+                  <p className="text-xs mb-4 retro-text-shadow">{award.assoc}</p>
+                  <p className="text-sm leading-relaxed italic border-l-2 border-[#F85898]/50 pl-3 retro-text-shadow">"{award.desc}"</p>
                 </div>
               </RetroCard>
             ))}
@@ -311,7 +311,7 @@ function App() {
 
       {/* Footer */}
       <footer className="py-8 text-center opacity-50 text-sm border-t border-gray-200 dark:border-white/10">
-        <p>© 2026 Valentina De Miglio. {t.footer}</p>
+        <p className="retro-text-shadow">© 2026 Valentina De Miglio. {t.footer}</p>
       </footer>
     </div>
   );
