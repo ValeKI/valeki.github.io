@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 const BubbleBackground = () => {
   const [bubbles, setBubbles] = useState([]);
+  const isSimulating = useRef(false);
   const colors = ['#58D854', '#3CBCFC', '#F85898', '#F8B800'];
 
   useEffect(() => {
@@ -16,29 +17,65 @@ const BubbleBackground = () => {
         duration: Math.random() * 20 + 10,
         delay: Math.random() * 5,
       }));
+
       setBubbles(newBubbles);
     };
 
     generateBubbles();
   }, []);
 
+  useEffect(() => {
+    const handleGlobalClick = (e) => {
+      if (isSimulating.current) return;
+
+      const elements = document.elementsFromPoint(e.clientX, e.clientY);
+      const bubbleEl = elements.find(el => el.classList.contains('bubble'));
+
+      if (bubbleEl) {
+        isSimulating.current = true;
+        
+        // Create a new click event to pass to the bubble
+        const simulatedEvent = new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+          clientX: e.clientX,
+          clientY: e.clientY,
+          view: window
+        });
+
+        bubbleEl.dispatchEvent(simulatedEvent);
+        isSimulating.current = false;
+      }
+    };
+
+    window.addEventListener('click', handleGlobalClick, true);
+    return () => window.removeEventListener('click', handleGlobalClick, true);
+  }, []);
+
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
       {bubbles.map((bubble) => (
         <motion.div
           key={bubble.id}
+          id={bubble.id}
           className="bubble"
           style={{
             width: bubble.size,
             height: bubble.size,
             left: `${bubble.x}%`,
             top: `${bubble.y}%`,
+            cursor: 'pointer',
+            pointerEvents: 'auto',
+            transform: 'translate(-50%, -50%)',
           }}
+          onClick={() => console.log(`Bubble clicked! ID: ${bubble.id}, Color: ${bubble.color}`)}
           animate={{
             y: [0, -100, 0, 100, 0],
             x: [0, 50, 0, -50, 0],
             scale: [1, 1.1, 1],
           }}
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
           transition={{
             duration: bubble.duration,
             repeat: Infinity,

@@ -14,11 +14,15 @@ $yellow-bubble: #F8B800;
 
 /* Custom styles for Bubble Bobble aesthetic */
 .bubble {
-  position: absolute;
+  position: relative;
+  z-index: 20;
   opacity: 0.85;
-  cursor: pointer;
 }
 
+.bubble:hover {
+  transform: scale(1.15);
+  opacity: 1;
+}
 
 // Glassmorphism effect utility
 .glass {
