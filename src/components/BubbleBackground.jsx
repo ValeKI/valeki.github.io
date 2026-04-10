@@ -26,8 +26,20 @@ const BubbleBackground = () => {
   }, []);
 
   const handlePop = (id) => {
-    // Simply filter out the popped bubble without replacing it to avoid layout shifts
-    setBubbles(prev => prev.filter(b => b.id !== id));
+    setBubbles(prev => {
+      const filtered = prev.filter(b => b.id !== id);
+      // Now that absolute positioning is fixed, we can safely replace popped bubbles
+      const replacement = {
+        id: Math.random().toString(36).substr(2, 9),
+        size: Math.random() * 60 + 20,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        duration: Math.random() * 20 + 10,
+        delay: 0,
+      };
+      return [...filtered, replacement];
+    });
   };
 
   useEffect(() => {
