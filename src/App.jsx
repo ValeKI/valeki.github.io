@@ -115,7 +115,7 @@ function App() {
               </div>
             </div>
             <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-[#58D854] to-[#3CBCFC] p-2 relative">
-              <div className="w-full h-full rounded-full bg-gray-100 dark:bg-black flex items-center justify-center overflow-hidden">
+              <div className="w-full h-full rounded-full bg-[var(--card-bg)] glass-card flex items-center justify-center overflow-hidden">
                 <span className="text-8xl">🫧</span>
               </div>
               <div className="absolute -bottom-4 -right-4 bg-[#F85898] px-4 py-2 rounded-xl font-bold text-white text-sm transform rotate-12 shadow-lg">
