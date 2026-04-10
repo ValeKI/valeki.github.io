@@ -18,7 +18,7 @@ export function RetroCard({ color = 'white', className, children, ...props }) {
   return (
     <div 
       className={cn(
-        "p-6 rounded-2xl border bg-black/5 dark:bg-white/5 transition-all hover:bg-black/10 dark:hover:bg-white/10 flex flex-col h-full",
+        "p-6 rounded-2xl border bg-[var(--card-bg)] transition-all hover:shadow-xl hover:scale-[1.01] flex flex-col h-full glass-card",
         colorStyles[color],
         className
       )}
