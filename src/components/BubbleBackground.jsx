@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const BubbleBackground = () => {
   const [bubbles, setBubbles] = useState([]);
@@ -9,7 +9,7 @@ const BubbleBackground = () => {
 
   useEffect(() => {
     const generateBubbles = () => {
-      const newBubbles = Array.from({ length: 15 }).map((_, i) => ({
+      const newBubbles = Array.from({ length: 20 }).map((_, i) => ({
         id: i,
         size: Math.random() * 60 + 20,
         x: Math.random() * 100,
@@ -25,6 +25,11 @@ const BubbleBackground = () => {
     generateBubbles();
   }, []);
 
+  const handlePop = (id) => {
+    // Simply filter out the popped bubble without replacing it to avoid layout shifts
+    setBubbles(prev => prev.filter(b => b.id !== id));
+  };
+
   useEffect(() => {
     const handleGlobalClick = (e) => {
       if (isSimulating.current) return;
@@ -34,8 +39,7 @@ const BubbleBackground = () => {
 
       if (bubbleEl) {
         isSimulating.current = true;
-
-        // Create a new click event to pass to the bubble
+        
         const simulatedEvent = new MouseEvent('click', {
           bubbles: true,
           cancelable: true,
@@ -68,7 +72,6 @@ const BubbleBackground = () => {
         lastHoveredEl.current = bubbleEl;
       }
 
-      // Update global cursor style to provide feedback for "pierced" interaction
       if (bubbleEl) {
         document.body.style.cursor = 'pointer';
       } else {
@@ -79,52 +82,65 @@ const BubbleBackground = () => {
     window.addEventListener('mousemove', handleMouseMove);
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      document.body.style.cursor = ''; // Reset cursor on unmount
+      document.body.style.cursor = '';
     };
   }, []);
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-      {bubbles.map((bubble) => (
-        <motion.div
-          key={bubble.id}
-          id={bubble.id}
-          className="bubble"
-          style={{
-            width: bubble.size,
-            height: bubble.size,
-            left: `${bubble.x}%`,
-            top: `${bubble.y}%`,
-            cursor: 'pointer',
-            pointerEvents: 'auto',
-            transform: 'translate(-50%, -50%)',
-          }}
-          onClick={() => console.log(`Bubble clicked! ID: ${bubble.id}, Color: ${bubble.color}`)}
-          animate={{
-            y: [0, -100, 0, 100, 0],
-            x: [0, 50, 0, -50, 0],
-          }}
-          whileTap={{ scale: 0.9 }}
-          transition={{
-            duration: bubble.duration,
-            repeat: Infinity,
-            delay: bubble.delay,
-            ease: "linear"
-          }}
-        >
-          <svg viewBox="0 0 10 10" width="100%" height="100%" shapeRendering="crispEdges" style={{ overflow: 'visible' }}>
-            <path
-              fill={bubble.color}
-              fillOpacity="0.2"
-              stroke={bubble.color}
-              strokeWidth="var(--bubble-border-width)"
-              vectorEffect="non-scaling-stroke"
-              d="M3 0 h4 v1 h2 v2 h1 v4 h-1 v2 h-2 v1 h-4 v-1 h-2 v-2 h-1 v-4 h1 v-2 h2 v-1 z"
-            />
-            <rect x="2" y="2" width="2" height="2" fill="white" opacity="0.85" />
-          </svg>
-        </motion.div>
-      ))}
+      <AnimatePresence>
+        {bubbles.map((bubble) => (
+          <motion.div
+            key={bubble.id}
+            id={bubble.id}
+            className="bubble"
+            style={{
+              width: bubble.size,
+              height: bubble.size,
+              left: `${bubble.x}%`,
+              top: `${bubble.y}%`,
+              cursor: 'pointer',
+              pointerEvents: 'auto',
+              transform: 'translate(-50%, -50%)',
+            }}
+            onClick={() => handlePop(bubble.id)}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{
+              y: [0, -100, 0, 100, 0],
+              x: [0, 50, 0, -50, 0],
+              scale: 1,
+              opacity: 0.85,
+            }}
+            exit={{ 
+              scale: 1.5, 
+              opacity: 0,
+              filter: 'brightness(2) blur(2px)',
+              transition: { duration: 0.3 }
+            }}
+            whileTap={{ scale: 0.9 }}
+            transition={{
+              duration: bubble.duration,
+              repeat: Infinity,
+              delay: bubble.delay,
+              ease: "linear",
+              scale: { duration: 0.5 },
+              opacity: { duration: 0.5 }
+            }}
+          >
+            <svg viewBox="0 0 10 10" width="100%" height="100%" shapeRendering="crispEdges" style={{ overflow: 'visible' }}>
+              <path
+                fill={bubble.color}
+                fillOpacity="0.2"
+                stroke={bubble.color}
+                strokeWidth="var(--bubble-border-width)"
+                vectorEffect="non-scaling-stroke"
+                d="M3 0 h4 v1 h2 v2 h1 v4 h-1 v2 h-2 v1 h-4 v-1 h-2 v-2 h-1 v-4 h1 v-2 h2 v-1 z"
+              />
+              <rect x="2" y="2" width="2" height="2" fill="white" opacity="0.85" />
+            </svg>
+          </motion.div>
+        ))}
+      </AnimatePresence>
     </div>
   );
 };
